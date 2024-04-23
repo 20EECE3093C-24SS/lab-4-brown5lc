@@ -18,13 +18,11 @@ jobs:
           pip install -r requirements.txt
       - name: Build HTML documentation
         run: |
-          sphinx-apidoc -o docs/source/ sample/ || { echo "sphinx-apidoc command failed"; exit 1; }
+          sphinx-apidoc -o docs/source/ sample/
           cd docs
-          make html || { echo "Sphinx documentation build failed"; exit 1; }
-      - name: Archive HTML documentation
-        run: |
-          cd source/build/html
-          zip -r ../../../api_docs.zip . || { echo "Zipping documentation failed"; exit 1; }
+          make html
+          cd build
+          zip ../../api_docs.zip -r html/
       - name: Upload html documentation
         uses: actions/upload-artifact@v2
         with:
