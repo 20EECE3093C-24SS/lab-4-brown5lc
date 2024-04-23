@@ -21,7 +21,7 @@ jobs:
           sphinx-apidoc -o docs/source/ sample/
           cd docs
           make html
-          cd source
+          cd build
           zip ../../api_docs.zip -r html/
       - name: Upload html documentation
         uses: actions/upload-artifact@v2
